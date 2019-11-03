@@ -1,28 +1,26 @@
-package com.simplemobiletools.calculator.tests
+package com.simplemobiletools.calculator.tests.activity
 
 import com.simplemobiletools.calculator.activities.MainActivity
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import com.simplemobiletools.calculator.pageobject.CalculatorPage
+import com.simplemobiletools.calculator.pageobject.pages.CalculatorPage
+import com.simplemobiletools.calculator.pageobject.BaseObject
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.*
 
-
 @RunWith(AndroidJUnit4::class)
-class CalculatorPageTest {
+class MainActivityTest {
     private val firstNumber = Random().nextInt(10)
     private val secondNumber = Random().nextInt(10)
 
     @Rule
-    @JvmField
     val testRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
 
     @Test
     fun addTest() {
-        val calculatorPage = CalculatorPage()
-        calculatorPage
+        BaseObject.on<CalculatorPage>()
                 .enter(firstNumber)
                 .plus(secondNumber)
                 .checkResult(firstNumber + secondNumber)
@@ -30,8 +28,7 @@ class CalculatorPageTest {
 
     @Test
     fun minusTest() {
-        val calculatorPage = CalculatorPage()
-        calculatorPage
+        BaseObject.on<CalculatorPage>()
                 .enter(firstNumber)
                 .minus(secondNumber)
                 .checkResult(firstNumber - secondNumber)
@@ -39,8 +36,7 @@ class CalculatorPageTest {
 
     @Test
     fun divideTest() {
-        val calculatorPage = CalculatorPage()
-        calculatorPage
+        BaseObject.on<CalculatorPage>()
                 .enter(8)
                 .divide(4)
                 .checkResult(2)
@@ -48,8 +44,7 @@ class CalculatorPageTest {
 
     @Test
     fun multiplyTest() {
-        val calculatorPage = CalculatorPage()
-        calculatorPage
+        BaseObject.on<CalculatorPage>()
                 .enter(firstNumber)
                 .multiply(secondNumber)
                 .checkResult(firstNumber * secondNumber)
@@ -57,8 +52,7 @@ class CalculatorPageTest {
 
     @Test
     fun clearTest() {
-        val calculatorPage = CalculatorPage()
-        calculatorPage
+        BaseObject.on<CalculatorPage>()
                 .enter(3)
                 .checkResult(3)
                 .clear()
@@ -67,8 +61,7 @@ class CalculatorPageTest {
 
     @Test
     fun commaTest() {
-        val calculatorPage = CalculatorPage()
-        calculatorPage
+        BaseObject.on<CalculatorPage>()
                 .enter(3)
                 .comma()
                 .enter(2)
@@ -78,8 +71,7 @@ class CalculatorPageTest {
 
     @Test
     fun powerTest() {
-        val calculatorPage = CalculatorPage()
-        calculatorPage
+        BaseObject.on<CalculatorPage>()
                 .enter(4)
                 .power(4)
                 .checkResult(256)
@@ -87,8 +79,7 @@ class CalculatorPageTest {
 
     @Test
     fun rootTest() {
-        val calculatorPage = CalculatorPage()
-        calculatorPage
+        BaseObject.on<CalculatorPage>()
                 .enter(1)
                 .enter(6)
                 .root()
