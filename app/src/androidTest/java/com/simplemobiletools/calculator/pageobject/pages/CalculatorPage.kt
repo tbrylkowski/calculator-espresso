@@ -1,17 +1,30 @@
-package com.simplemobiletools.calculator.pageobject
+package com.simplemobiletools.calculator.pageobject.pages
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.ViewInteraction
+import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.*
+import android.widget.TextView
 import com.simplemobiletools.calculator.R
+import com.simplemobiletools.calculator.pageobject.BaseObject
+import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.CoreMatchers.instanceOf
 
+class CalculatorPage : BaseObject() {
 
-class CalculatorPage() : AbstractPageClass(CalculatorPageTitle) {
+    override fun verify() {
+        onView(allOf(instanceOf(TextView::class.java), withParent(withId(R.id.action_bar))))
+                .check(matches(withText(CalculatorPageTitle)))
+    }
+
+    companion object {
+        const val CalculatorPageTitle = "Calculator_debug"
+    }
+
     private val equalButton = onView(withId(R.id.btn_equals))
     private val divideButton = onView(withId(R.id.btn_divide))
-    private val minuButton = onView(withId(R.id.btn_minus))
+    private val minusButton = onView(withId(R.id.btn_minus))
     private val multiplyButton = onView(withId(R.id.btn_multiply))
     private val plusButton = onView(withId(R.id.btn_plus))
     private val percentButton = onView(withId(R.id.btn_percent))
@@ -59,7 +72,7 @@ class CalculatorPage() : AbstractPageClass(CalculatorPageTitle) {
     }
 
     fun minus(number: Int): CalculatorPage {
-        calculate(number, operationButton = minuButton)
+        calculate(number, operationButton = minusButton)
         return this
     }
 
@@ -73,7 +86,7 @@ class CalculatorPage() : AbstractPageClass(CalculatorPageTitle) {
         return this
     }
 
-    fun clear(): CalculatorPage{
+    fun clear(): CalculatorPage {
         press(clearButton)
         return this
     }
@@ -100,9 +113,9 @@ class CalculatorPage() : AbstractPageClass(CalculatorPageTitle) {
         return this
     }
 
-
-    companion object {
-        const val CalculatorPageTitle = "Calculator_debug"
+    private fun press(number: ViewInteraction?): CalculatorPage {
+        number?.perform(click())
+        return this
     }
 }
 
