@@ -15,45 +15,49 @@ class MainActivityTest {
     private val firstNumber = Random().nextInt(10)
     private val secondNumber = Random().nextInt(10)
 
-    @Rule
+    @get:Rule
     val testRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
 
     @Test
     fun addTest() {
         BaseObject.on<CalculatorPage>()
-                .enter(firstNumber)
+                .press(firstNumber)
                 .plus(secondNumber)
                 .checkResult(firstNumber + secondNumber)
+                .checkFormula("$firstNumber+$secondNumber")
     }
 
     @Test
     fun minusTest() {
         BaseObject.on<CalculatorPage>()
-                .enter(firstNumber)
+                .press(firstNumber)
                 .minus(secondNumber)
                 .checkResult(firstNumber - secondNumber)
+                .checkFormula("$firstNumber-$secondNumber")
     }
 
     @Test
     fun divideTest() {
         BaseObject.on<CalculatorPage>()
-                .enter(8)
+                .press(8)
                 .divide(4)
                 .checkResult(2)
+                .checkFormula("8/4")
     }
 
     @Test
     fun multiplyTest() {
         BaseObject.on<CalculatorPage>()
-                .enter(firstNumber)
+                .press(firstNumber)
                 .multiply(secondNumber)
                 .checkResult(firstNumber * secondNumber)
+                .checkFormula("$firstNumber*$secondNumber")
     }
 
     @Test
     fun clearTest() {
         BaseObject.on<CalculatorPage>()
-                .enter(3)
+                .press(3)
                 .checkResult(3)
                 .clear()
                 .checkResult(0)
@@ -62,28 +66,63 @@ class MainActivityTest {
     @Test
     fun commaTest() {
         BaseObject.on<CalculatorPage>()
-                .enter(3)
+                .press(3)
                 .comma()
-                .enter(2)
+                .press(2)
+                .checkResult("3.2")
                 .plus(2)
                 .checkResult(5.2)
+                .checkFormula("3.2+2")
     }
 
     @Test
     fun powerTest() {
         BaseObject.on<CalculatorPage>()
-                .enter(4)
+                .press(4)
                 .power(4)
                 .checkResult(256)
+                .checkFormula("4^4")
     }
 
     @Test
     fun rootTest() {
         BaseObject.on<CalculatorPage>()
-                .enter(1)
-                .enter(6)
+                .press(1)
+                .press(6)
                 .root()
                 .checkResult(4)
+                .checkFormula("√16")
+    }
+
+    @Test
+    fun percentTest() {
+        BaseObject.on<CalculatorPage>()
+                .press(1)
+                .press(0)
+                .percent(2)
+                .checkResult(0.2)
+                .checkFormula("10%2")
+    }
+
+    @Test
+    fun checkNumbersTest() {
+        for (x in 1 until 10) {
+            BaseObject.on<CalculatorPage>()
+                    .press(x)
+        }
+        BaseObject.on<CalculatorPage>()
+                .press(0)
+                .checkResult("1,234,567,890")
+    }
+
+    @Test
+    fun clearFormulaTest() {
+        BaseObject.on<CalculatorPage>()
+                .press(1)
+                .multiply(4)
+                .checkFormula("1*4")
+                .clearLongPress()
+                .checkFormula("")
     }
 
 }

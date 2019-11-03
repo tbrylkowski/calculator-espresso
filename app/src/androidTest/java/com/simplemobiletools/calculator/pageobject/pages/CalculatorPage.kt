@@ -3,6 +3,7 @@ package com.simplemobiletools.calculator.pageobject.pages
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.longClick
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.widget.TextView
@@ -61,8 +62,13 @@ class CalculatorPage : BaseObject() {
         return this
     }
 
-    fun enter(number: Int): CalculatorPage {
-        press(numbers[number])
+    fun checkFormula(formula: String): CalculatorPage {
+        onView(withId(R.id.formula)).check(matches(withText(formula)))
+        return this
+    }
+
+    fun press(number: Int): CalculatorPage {
+        enter(numbers[number])
         return this
     }
 
@@ -87,12 +93,17 @@ class CalculatorPage : BaseObject() {
     }
 
     fun clear(): CalculatorPage {
-        press(clearButton)
+        enter(clearButton)
+        return this
+    }
+
+    fun clearLongPress(): CalculatorPage {
+        clearButton.perform(longClick())
         return this
     }
 
     fun comma(): CalculatorPage {
-        press(decimalButton)
+        enter(decimalButton)
         return this
     }
 
@@ -102,18 +113,23 @@ class CalculatorPage : BaseObject() {
     }
 
     fun root(): CalculatorPage {
-        press(rootButton)
+        enter(rootButton)
+        return this
+    }
+
+    fun percent(number: Int): CalculatorPage {
+        calculate(number, operationButton = percentButton)
         return this
     }
 
     private fun calculate(number: Int, operationButton: ViewInteraction): CalculatorPage {
-        press(operationButton)
-        press(numbers[number])
-        press(equalButton)
+        enter(operationButton)
+        enter(numbers[number])
+        enter(equalButton)
         return this
     }
 
-    private fun press(number: ViewInteraction?): CalculatorPage {
+    private fun enter(number: ViewInteraction?): CalculatorPage {
         number?.perform(click())
         return this
     }
