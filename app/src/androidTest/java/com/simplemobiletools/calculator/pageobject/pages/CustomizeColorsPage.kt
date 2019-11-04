@@ -7,15 +7,12 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.widget.TextView
 import com.simplemobiletools.calculator.R
 import com.simplemobiletools.calculator.pageobject.BaseObject
-import com.simplemobiletools.calculator.pageobject.page_segment.ThemeViewPicker
-import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.CoreMatchers.*
 
 class CustomizeColorsPage : BaseObject() {
 
     override fun verify() {
-        onView(allOf(instanceOf(TextView::class.java),
-                withParent(withId(R.id.action_bar))))
+        onView(allOf(instanceOf(TextView::class.java), withParent(withId(R.id.action_bar))))
                 .check(matches(withText(CustomizeColorsTitle)))
     }
 
@@ -26,8 +23,8 @@ class CustomizeColorsPage : BaseObject() {
     private val themeTextView = onView(allOf(withId(R.id.customization_theme_label),
             withParent(withId(R.id.customization_theme_holder))))
 
-    fun changeTheme(): ThemeViewPicker {
+    fun clickChangeTheme(): CustomizeColorsPage {
         themeTextView.perform(click())
-        return ThemeViewPicker()
+        return this
     }
 }

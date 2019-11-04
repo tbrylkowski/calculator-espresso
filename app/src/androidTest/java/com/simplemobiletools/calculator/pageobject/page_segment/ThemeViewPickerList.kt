@@ -8,7 +8,7 @@ import com.simplemobiletools.calculator.R
 import com.simplemobiletools.calculator.pageobject.BaseObject
 import com.simplemobiletools.calculator.pageobject.pages.CustomizeColorsPage
 
-class ThemeViewPicker : BaseObject() {
+class ThemeViewPickerList : BaseObject() {
     override fun verify() {
         onView(withId(R.id.dialog_radio_holder)).check(matches(isDisplayed()))
     }
@@ -18,26 +18,32 @@ class ThemeViewPicker : BaseObject() {
         const val darkTheme = "Dark"
         const val darkRedTheme = "Dark red"
         const val blackAndWithTheme = "Black & White"
+        const val custom = "Custom"
     }
 
 
-    fun setLightTheme(): CustomizeColorsPage {
+    fun clickLightTheme(): CustomizeColorsPage {
         onView(withText(lightTheme)).perform(click())
         return CustomizeColorsPage()
     }
 
-    fun setDarkTheme(): CustomizeColorsPage {
+    fun clickDarkTheme(): CustomizeColorsPage {
         onView(withText(darkTheme)).perform(click())
         return CustomizeColorsPage()
     }
 
-    fun setDarkRedTheme(): CustomizeColorsPage {
+    fun clickDarkRedTheme(): CustomizeColorsPage {
         onView(withText(darkRedTheme)).perform(click())
         return CustomizeColorsPage()
     }
 
-    fun setBlackAndWhite(): CustomizeColorsPage {
+    fun clickBlackAndWhiteTheme(): CustomizeColorsPage {
         onView(withText(blackAndWithTheme)).perform(click())
+        return CustomizeColorsPage()
+    }
+
+    fun clickCustomTheme(): CustomizeColorsPage {
+        onView(withText(custom)).perform(click())
         return CustomizeColorsPage()
     }
 }

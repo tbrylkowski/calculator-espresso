@@ -14,7 +14,5 @@ open class BaseObject {
         return page
     }
 
-    open fun verify() {
-        /** Implement this method to validate displaying each page. **/
-    }
+    open fun verify() {}
 }

@@ -12,11 +12,12 @@ import java.util.*
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
-    private val firstNumber = Random().nextInt(10)
-    private val secondNumber = Random().nextInt(10)
 
     @get:Rule
-    val testRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
+    val testRule = ActivityTestRule(MainActivity::class.java)
+
+    private val firstNumber = Random().nextInt(10)
+    private val secondNumber = Random().nextInt(10)
 
     @Test
     fun addTest() {
@@ -124,5 +125,4 @@ class MainActivityTest {
                 .clearLongPress()
                 .checkFormula("")
     }
-
 }

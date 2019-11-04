@@ -9,11 +9,9 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import com.simplemobiletools.calculator.R
 import com.simplemobiletools.calculator.pageobject.BaseObject
-import com.simplemobiletools.calculator.pageobject.pages.AboutPage
-import com.simplemobiletools.calculator.pageobject.pages.SettingsPage
 import org.hamcrest.CoreMatchers
 
-class AppBarSegment : BaseObject() {
+class AppBar : BaseObject() {
     override fun verify() {
         //verify if any app bar is displayed
         onView(withId(R.id.action_bar)).check(matches(isDisplayed()))
@@ -24,7 +22,7 @@ class AppBarSegment : BaseObject() {
         const val AboutPageString = "About"
     }
 
-    fun navigateToSettingsPage(): SettingsPage {
+    fun navigateToSettingsPage(): BaseObject {
         // open toolbar menu
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry
                 .getInstrumentation().targetContext)
@@ -32,10 +30,10 @@ class AppBarSegment : BaseObject() {
         //click in 'setting' toolbar item
         onView(CoreMatchers.allOf(withText(SettingsPageString),
                 isDisplayed())).perform(click())
-        return SettingsPage()
+        return this
     }
 
-    fun navigateToAboutPage(): AboutPage {
+    fun navigateToAboutPage(): BaseObject {
         // open toolbar menu
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry
                 .getInstrumentation().targetContext)
@@ -43,25 +41,25 @@ class AppBarSegment : BaseObject() {
         // click in 'about' toolbar item
         onView(CoreMatchers.allOf(withText(AboutPageString),
                 isDisplayed())).perform(click())
-        return AboutPage()
+        return this
     }
 
-    fun pressBackButton(): AppBarSegment {
+    fun pressBackButton(): AppBar {
         // don't use in root activity
         Espresso.pressBack()
         return this
     }
 
-    fun cancelCustomThemeAndNavigateBackToSettingPage(): SettingsPage {
+    fun cancelCustomThemeAndNavigateBackToSettingPage(): AppBar {
         // navigate up in CustomizeColorsPage view
         onView(withContentDescription("Navigate up")).perform(click())
-        return SettingsPage()
+        return this
     }
 
-    fun saveCustomThemeAndNavigateBackToSettingPage(): SettingsPage {
+    fun saveCustomThemeAndNavigateBackToSettingPage(): AppBar {
         // save changes in CustomizeColorsPage view
         onView(withContentDescription("Save")).perform(click())
-        return SettingsPage()
+        return this
     }
 
 

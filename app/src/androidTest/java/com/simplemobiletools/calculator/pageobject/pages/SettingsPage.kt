@@ -1,7 +1,6 @@
 package com.simplemobiletools.calculator.pageobject.pages
 
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
@@ -61,9 +60,9 @@ class SettingsPage : BaseObject() {
         return this
     }
 
-    fun navigateToCustomizeColorPage(): CustomizeColorsPage {
+    fun navigateToCustomizeColorPage(): SettingsPage {
         customizeColorTextView.perform(click())
-        return CustomizeColorsPage()
+        return this
     }
 
     fun navigateToCustomizeWidgetColorsPage(): SettingsPage {
