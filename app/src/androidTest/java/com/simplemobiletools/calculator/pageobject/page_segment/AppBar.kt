@@ -22,23 +22,23 @@ class AppBar : BaseObject() {
         const val AboutPageString = "About"
     }
 
-    fun navigateToSettingsPage(): BaseObject {
-        // open toolbar menu
+    fun navigateToSettingsPage(): AppBar {
+        // open appbar menu
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry
                 .getInstrumentation().targetContext)
 
-        //click in 'setting' toolbar item
+        //click in appbar item with text 'Settings'
         onView(CoreMatchers.allOf(withText(SettingsPageString),
                 isDisplayed())).perform(click())
         return this
     }
 
-    fun navigateToAboutPage(): BaseObject {
-        // open toolbar menu
+    fun navigateToAboutPage(): AppBar {
+        // open appbar menu
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry
                 .getInstrumentation().targetContext)
 
-        // click in 'about' toolbar item
+        // click in appbar item with text 'About'
         onView(CoreMatchers.allOf(withText(AboutPageString),
                 isDisplayed())).perform(click())
         return this
