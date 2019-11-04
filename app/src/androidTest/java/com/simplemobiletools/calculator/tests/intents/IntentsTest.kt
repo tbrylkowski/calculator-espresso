@@ -9,7 +9,6 @@ import com.simplemobiletools.calculator.activities.WidgetConfigureActivity
 import com.simplemobiletools.calculator.pageobject.BaseObject
 import com.simplemobiletools.calculator.pageobject.page_segment.AppBarSegment
 import com.simplemobiletools.calculator.pageobject.pages.CalculatorPage
-import com.simplemobiletools.calculator.pageobject.pages.SettingsPage
 import com.simplemobiletools.commons.activities.AboutActivity
 import org.junit.Rule
 import org.junit.Test
@@ -41,7 +40,6 @@ class IntentsTest {
         BaseObject.on<CalculatorPage>()
                 .on<AppBarSegment>()
                 .navigateToSettingsPage()
-                .on<SettingsPage>()
                 .navigateToCustomizeWidgetColorsPage()
         intended(hasComponent(WidgetConfigureActivity::class.java.name))
     }

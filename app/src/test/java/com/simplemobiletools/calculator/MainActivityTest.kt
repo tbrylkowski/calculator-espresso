@@ -70,12 +70,12 @@ class MainActivityTest {
         checkFormula("6/0")
     }
 
-    @Test
-    fun moduloTest() {
-        val res = calcResult(6.5, MODULO, 3.0)
-        assertEquals("0.5", res)
-        checkFormula("6.5%3")
-    }
+//    @Test
+//    fun moduloTest() {
+//        val res = calcResult(6.5, MODULO, 3.0)
+//        assertEquals("0.5", res)
+//        checkFormula("6.5%3")
+//    }
 
     @Test
     fun powerTest() {
@@ -142,10 +142,10 @@ class MainActivityTest {
         assertEquals("28", getDisplayedNumber())
         checkFormula("5.6*5")
 
-        setDouble(4.0)
-        handleOperation(MODULO)
-        assertEquals("7", getDisplayedNumber())
-        checkFormula("28/4")
+//        setDouble(4.0)
+//        handleOperation(MODULO)
+//        assertEquals("7", getDisplayedNumber())
+//        checkFormula("28/4")
 
         setDouble(5.0)
         handleOperation(POWER)
