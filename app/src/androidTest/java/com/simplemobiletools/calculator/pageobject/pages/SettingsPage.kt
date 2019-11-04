@@ -69,4 +69,14 @@ class SettingsPage : BaseObject() {
         customizeWidgetColorsTextView.perform(click())
         return this
     }
+
+    fun validateDarkTheme(): SettingsPage {
+        customizeColorTextView.check(matches(hasTextColor(R.color.theme_dark_text_color)))
+        return this
+    }
+
+    fun validateLightTheme(): SettingsPage {
+        customizeColorTextView.check(matches(hasTextColor(R.color.theme_light_text_color)))
+        return this
+    }
 }

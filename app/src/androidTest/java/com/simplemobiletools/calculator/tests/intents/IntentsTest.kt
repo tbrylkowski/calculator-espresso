@@ -47,4 +47,14 @@ class IntentsTest {
         intended(hasComponent(WidgetConfigureActivity::class.java.name))
     }
 
+    @Test
+    fun mainActivity_launchCustomizationActivity() {
+        BaseObject.on<CalculatorPage>()
+                .on<AppBar>()
+                .navigateToSettingsPage()
+                .on<SettingsPage>()
+                .navigateToCustomizeColorPage()
+        intended(hasComponent(CustomizationActivity::class.java.name))
+    }
+
 }
